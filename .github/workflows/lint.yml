@@ -23,4 +23,4 @@ jobs:
         run: pnpm lint
 
       - name: Run Prettier Check
-        run: pnpm prettier --check .
+        run: pnpm format:check
