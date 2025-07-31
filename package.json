@@ -7,11 +7,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest --ui",
+    "test": "vitest",
     "test:run": "vitest run",
     "coverage": "vitest run --coverage",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "prepare": "husky install && chmod ug+x .husky/*"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix",
+      "prettier --cache --write"
+    ]
   },
   "dependencies": {
     "next": "15.4.3",
@@ -27,7 +34,9 @@
     "@vitest/ui": "^3.2.4",
     "eslint": "^9",
     "eslint-config-next": "15.4.3",
+    "husky": "^8.0.0",
     "jsdom": "^26.1.0",
+    "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
     "tailwindcss": "^4",
     "typescript": "^5",
