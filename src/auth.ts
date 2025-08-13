@@ -10,8 +10,18 @@ export const authOptions: NextAuthOptions = {
     GitHub({
       clientId: process.env.GITHUB_ID!,
       clientSecret: process.env.GITHUB_SECRET!,
+      authorization: { params: { scope: 'read:user repo' } },
     }),
   ],
+  callbacks: {
+    async session({ session, user }) {
+      if (session.user && user) {
+        session.user.id = user.id;
+      }
+      return session;
+    },
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 const handler = NextAuth(authOptions);
