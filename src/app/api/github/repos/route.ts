@@ -2,6 +2,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/auth';
 import { prisma } from '@/lib/prisma';
 import type { GitHubRepo } from '@/types/oauth';
+import { GITHUB } from '@/constants/github';
 
 export async function GET() {
   const session = await getServerSession(authOptions);
@@ -17,7 +18,7 @@ export async function GET() {
     return new Response('No GitHub token', { status: 401 });
   }
 
-  const res = await fetch('https://api.github.com/user/repos?per_page=30', {
+  const res = await fetch(`${GITHUB.BASE}${GITHUB.REPOS}?per_page=30`, {
     headers: {
       Authorization: `Bearer ${account.access_token}`,
       Accept: 'application/vnd.github+json',
