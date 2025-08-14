@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "postinstall": "prisma generate",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -14,6 +15,9 @@
     "format:check": "prettier --check .",
     "prepare": "husky install && chmod ug+x .husky/*"
   },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
       "eslint --cache --fix",
@@ -21,7 +25,10 @@
     ]
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.10.0",
+    "@prisma/client": "^6.13.0",
     "next": "15.4.3",
+    "next-auth": "^4.24.11",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
@@ -38,6 +45,7 @@
     "jsdom": "^26.1.0",
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
+    "prisma": "^6.13.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^3.2.4"
